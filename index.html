@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Meri Raniya 👑</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+  display: flex; justify-content: center; align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden; color: white; text-align: center;
+}
+#lockPage {
+  position: fixed; inset: 0; display: flex; justify-content: center;
+  align-items: center; flex-direction: column; z-index: 100;
+  padding: 30px 20px;
+  background: linear-gradient(135deg, #0f0f1e, #1a1a2e, #0f3460);
+}
+.lock-icon {
+  font-size: 8rem; animation: lockShake 2s ease-in-out infinite;
+  cursor: pointer; user-select: none;
+  filter: drop-shadow(0 0 30px rgba(255,107,157,0.8));
+}
+@keyframes lockShake {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(-10deg) scale(1.05); }
+  75% { transform: rotate(10deg) scale(1.05); }
+}
+.lock-text { font-size: 1.2rem; color: #ffd93d; margin-top: 25px; animation: blink 1.5s ease-in-out infinite; }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+.lock-hint { font-size: 1rem; color: #ff6b9d; margin-top: 10px; }
+#countdown {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.95);
+  display: none; justify-content: center; align-items: center; z-index: 999;
+}
+#countNum {
+  font-size: 10rem; font-weight: bold;
+  background: linear-gradient(90deg, #ff6b9d, #ffd93d);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.pop-anim { animation: pop 1s ease; }
+@keyframes pop {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.4); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+#page1 {
+  position: fixed; inset: 0; display: none; justify-content: center;
+  align-items: center; flex-direction: column; padding: 30px 20px; z-index: 10;
+}
+#page1.show { display: flex; animation: fadeInPage 1s ease; }
+.crown { font-size: 5rem; animation: crownBounce 1.5s ease-in-out infinite; margin-bottom: 10px; }
+@keyframes crownBounce {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+}
+.page1-title {
+  font-size: 2.6rem; font-weight: bold;
+  background: linear-gradient(90deg, #ff6b9d, #ffd93d, #6bcbff, #ff6b9d);
+  background-size: 300% 100%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; animation: shine 4s linear infinite;
+  margin-bottom: 15px; line-height: 1.3;
+}
+@keyframes shine { 0% { background-position: 0% 50%; } 100% { background-position: 300% 50%; } }
+.page1-sub { font-size: 1.2rem; color: #ffd93d; margin-bottom: 10px; }
+.cake-big { font-size: 4rem; animation: cakeBounce 1.5s ease-in-out infinite; margin: 15px 0; }
+@keyframes cakeBounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-15px) scale(1.1); }
+}
+.heart {
+  position: absolute; font-size: 1.5rem;
+  animation: float 6s linear infinite; opacity: 0.7;
+  pointer-events: none; z-index: 1;
+}
+@keyframes float {
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.8; }
+  100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+}
+.particle { position: fixed; pointer-events: none; z-index: 1000; }
+.flash { position: fixed; inset: 0; background: white; z-index: 998; animation: flashAnim 0.6s ease-out forwards; }
+@keyframes flashAnim { 0% { opacity: 1; } 100% { opacity: 0; } }
+.page-box {
+  position: fixed; inset: 0; display: none;
+  justify-content: flex-start; align-items: center; flex-direction: column;
+  z-index: 1001; text-align: center; padding: 40px 20px 60px;
+  background: linear-gradient(135deg, #1a1a2e, #2d1b4e, #16213e);
+  overflow-y: auto; -webkit-overflow-scrolling: touch;
+}
+.page-box.show { display: flex; animation: fadeInPage 1.5s ease; }
+@keyframes fadeInPage {
+  from { opacity: 0; transform: scale(1.05); }
+  to { opacity: 1; transform: scale(1); }
+}
+.page-box h2 {
+  font-size: 2rem;
+  background: linear-gradient(90deg, #ff6b9d, #ffd93d, #6bcbff);
+  background-size: 300% 100%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; animation: shine 3s linear infinite;
+  margin-bottom: 25px; flex-shrink: 0;
+}
+.shayari {
+  font-size: 1.15rem; line-height: 1.4; color: #fff;
+  max-width: 520px; width: 100%; padding: 28px 22px;
+  background: rgba(255,255,255,0.05); border-radius: 20px;
+  border: 1px solid rgba(255,107,157,0.3);
+  box-shadow: 0 0 30px rgba(255,107,157,0.2);
+  animation: fadeInShayari 2s ease forwards;
+}
+@keyframes fadeInShayari {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.shayari p { margin: 8px 0; line-height: 1.5; }
+.shayari .hl { color: #ff6b9d; font-weight: bold; }
+.shayari .gold { color: #ffd93d; font-weight: bold; }
+.signature { margin-top: 25px; font-size: 1.1rem; color: #ffd93d; font-style: italic; flex-shrink: 0; }
+.heart-final { font-size: 2.5rem; margin-top: 15px; animation: heartBeat 1.2s ease-in-out infinite; flex-shrink: 0; }
+@keyframes heartBeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.3); } }
+.next-btn {
+  margin-top: 30px; padding: 14px 32px; border: none; border-radius: 50px;
+  background: linear-gradient(90deg, #ff6b9d, #ffd93d);
+  color: #1a1a2e; font-weight: bold; font-size: 1.05rem;
+  cursor: pointer; transition: transform 0.3s;
+  box-shadow: 0 0 25px rgba(255,107,157,0.7);
+  animation: pulse 1.5s ease-in-out infinite; flex-shrink: 0;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 25px rgba(255,107,157,0.7); }
+  50% { box-shadow: 0 0 45px rgba(255,217,61,0.9); }
+}
+.next-btn:active { transform: scale(0.95); }
+#page4 { background: linear-gradient(135deg, #2d1b4e, #1a1a2e, #4a1e5c); }
+#page4 h2 { font-size: 1.9rem; line-height: 1.4; }
+.promise-card {
+  font-size: 1.25rem; line-height: 1.7; color: #fff;
+  max-width: 520px; width: 100%; padding: 35px 25px;
+  background: rgba(255,255,255,0.06); border-radius: 22px;
+  border: 2px solid rgba(255,107,157,0.5);
+  box-shadow: 0 0 40px rgba(255,107,157,0.4);
+  animation: fadeInShayari 2s ease forwards;
+}
+.promise-card .big { font-size: 1.4rem; color: #ffd93d; font-weight: bold; display: block; margin: 12px 0; }
+.promise-card .pink { color: #ff6b9d; font-weight: bold; font-size: 1.35rem; }
+.ring { font-size: 3rem; margin-top: 20px; animation: ringSpin 3s ease-in-out infinite; }
+@keyframes ringSpin {
+  0%, 100% { transform: rotate(-10deg) scale(1); }
+  50% { transform: rotate(10deg) scale(1.15); }
+}
+#page5 { background: linear-gradient(135deg, #4a1e5c, #2d1b4e, #1a1a2e); }
+#page5 h2 { font-size: 2rem; margin-bottom: 20px; }
+.final-card {
+  font-size: 1.3rem; line-height: 1.8; color: #fff;
+  max-width: 520px; width: 100%; padding: 40px 25px;
+  background: rgba(255,255,255,0.07); border-radius: 24px;
+  border: 2px solid rgba(255,215,61,0.5);
+  box-shadow: 0 0 50px rgba(255,215,61,0.35);
+  animation: fadeInShayari 2s ease forwards;
+}
+.final-card .returns { display: block; font-size: 1.15rem; color: #ff6b9d; font-weight: bold; letter-spacing: 0.5px; margin-bottom: 15px; }
+.final-card .karejwa {
+  display: block; font-size: 2rem;
+  background: linear-gradient(90deg, #ff6b9d, #ffd93d, #6bcbff);
+  background-size: 300% 100%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; animation: shine 3s linear infinite;
+  font-weight: bold; margin: 15px 0; line-height: 1.4;
+}
+.final-card .small { font-size: 1.1rem; color: #ffd93d; display: block; margin-top: 10px; }
+.balloon { font-size: 3rem; margin-top: 20px; animation: balloonFloat 3s ease-in-out infinite; }
+@keyframes balloonFloat {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+}
+#page6 { background: linear-gradient(135deg, #1a1a2e, #4a1e5c, #2d1b4e); }
+#page6 .love-line {
+  font-size: 1.5rem; font-weight: bold;
+  background: linear-gradient(90deg, #ff6b9d, #ffd93d, #6bcbff);
+  background-size: 300% 100%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; animation: shine 3s linear infinite;
+  margin-bottom: 25px; padding: 0 10px; line-height: 1.5; flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+
+<div id="lockPage">
+  <div class="lock-icon" onclick="unlock()">🔐</div>
+  <div class="lock-text">Click Kar Nanhaki 🔓</div>
+  <div class="lock-hint">(Lock kholo aur surprise dekho 💖)</div>
+</div>
+
+<div id="countdown">
+  <div id="countNum">5</div>
+</div>
+
+<div id="page1">
+  <div class="crown">👑</div>
+  <h1 class="page1-title">Happy Birthday<br>Meri Raniya 💖</h1>
+  <div class="cake-big">🎂</div>
+  <p class="page1-sub">Aaj tumhara din hai, meri jaan ✨</p>
+  <button class="next-btn" onclick="showPage3()">💌 Aage Dekho...</button>
+</div>
+
+<div id="page3" class="page-box">
+  <h2>💌 Dil Se, Tumhare Liye 💌</h2>
+  <div class="shayari">
+    <p>Tumhari muskaan meri subah hai,<br>tumhara saath meri har khushi 💖</p>
+    <p>Jab bhi thak jaata hoon,<br>tumhari yaad <span class="gold">himmat ban jaati hai</span> ✨</p>
+    <p>Tum paas ho ya door,<br><span class="hl">dil me hamesha tum hi ho</span> 💖</p>
+    <p>Main <span class="gold">successful hoker</span><br>tumse <span class="hl">shadi karunga</span> 💍</p>
+    <p>Ye pyar sirf aaj ka nahi,<br><span class="gold">ye har saans ka vaada hai</span> 🌹</p>
+    <p>Happy Birthday meri Raniya,<br>hamesha <span class="hl">khush rehna</span> 👑</p>
+  </div>
+  <p class="signature">— Tumhara, sirf tumhara 💖</p>
+  <div class="heart-final">❤️</div>
+  <button class="next-btn" onclick="showPage4()">💍 Aage Dekho...</button>
+</div>
+
+<div id="page4" class="page-box">
+  <h2>💍 Ek Vaada, Dil Se 💍</h2>
+  <div class="promise-card">
+    <span class="big">Yadi Shreya life me successful ho gya,</span>
+    <span class="pink">to tumse hi shadi karunga</span> 💖
+    <br><br>
+    Ye sirf lafz nahi,<br>
+    ye <span style="color:#ffd93d;font-weight:bold;">dil ka vaada</span> hai 🌹
+    <br><br>
+    Tumhara intezaar rahega,<br>
+    hamesha, har din 💕
+  </div>
+  <div class="ring">💍</div>
+  <p class="signature">— Tumhara, hamesha 💖</p>
+  <button class="next-btn" onclick="showPage5()">🎂 Ek Last Surprise...</button>
+</div>
+
+<div id="page5" class="page-box">
+  <h2>🎉 Ek Baar Phir Se 🎉</h2>
+  <div class="final-card">
+    <span class="returns">Fir se many many returns of the day</span>
+    <span class="karejwa">Happy Birthday Karejwa 🎂💖</span>
+    <span class="small">Hamesha khush rehna, meri jaan 🌹</span>
+  </div>
+  <div class="balloon">🎈🎂🎈</div>
+  <p class="signature">— Tumhara, sirf tumhara 💖</p>
+  <div class="heart-final">❤️</div>
+  <button class="next-btn" onclick="showPage6()">🌊 Ek Shayari Aur...</button>
+</div>
+
+<div id="page6" class="page-box">
+  <p class="love-line">💖 Itna pyar karta hoon tumse 💖</p>
+  <div class="shayari">
+    <p>Jake samandar ke kinare,<br>hath se pani utha lena 🌊</p>
+    <p>Jitna utha sako —<br>vo <span class="hl">chahat tumhari</span> 💖</p>
+    <p>Aur jitna na utha pao —<br>vo <span class="gold">mohabbat hamari</span> 🌹</p>
+    <p>Ki raaton ko baith ke,<br>aasman me tare gin lena ✨</p>
+    <p>Jitna gin sako —<br>vo <span class="hl">chahat tumhari</span> 💖</p>
+    <p>Aur jitna na gin pao —<br>vo <span class="gold">mohabbat hamari</span> 🌹</p>
+  </div>
+  <p class="signature">— Tumhara, sirf tumhara 💖</p>
+  <div class="heart-final">❤️</div>
+</div>
+
+<script>
+const musicUrl = "";
+const hearts = ['❤️','💖','💕','💗','🌹','✨','👑'];
+
+setInterval(() => {
+  const h = document.createElement('div');
+  h.className = 'heart';
+  h.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+  h.style.left = Math.random() * 100 + 'vw';
+  h.style.animationDuration = (4 + Math.random() * 4) + 's';
+  h.style.fontSize = (1 + Math.random() * 1.5) + 'rem';
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 8000);
+}, 400);
+
+function unlock() {
+  document.getElementById('lockPage').style.display = 'none';
+  if (musicUrl) {
+    const audio = new Audio(musicUrl);
+    audio.volume = 0.7;
+    audio.play().catch(e => console.log(e));
+  }
+  const overlay = document.getElementById('countdown');
+  const numEl = document.getElementById('countNum');
+  overlay.style.display = 'flex';
+  let count = 5;
+  numEl.textContent = count;
+  numEl.classList.remove('pop-anim');
+  void numEl.offsetWidth;
+  numEl.classList.add('pop-anim');
+  const interval = setInterval(() => {
+    count--;
+    if (count > 0) {
+      numEl.textContent = count;
+      numEl.classList.remove('pop-anim');
+      void numEl.offsetWidth;
+      numEl.classList.add('pop-anim');
+    } else {
+      clearInterval(interval);
+      overlay.style.display = 'none';
+      dhamaka();
+    }
+  }, 1000);
+}
+
+function dhamaka() {
+  const flash = document.createElement('div');
+  flash.className = 'flash';
+  document.body.appendChild(flash);
+  setTimeout(() => flash.remove(), 600);
+  const cx = window.innerWidth / 2;
+  const cy = window.innerHeight / 2;
+  const emojis = ['❤️','💖','🎉','✨','🎊','🌹','💕','⭐','🎈','💗','🎆','👑'];
+  for (let i = 0; i < 70; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    p.style.left = cx + 'px';
+    p.style.top = cy + 'px';
+    p.style.fontSize = (1.5 + Math.random() * 2) + 'rem';
+    p.style.transition = 'transform 2.5s cubic-bezier(0.2, 0.8, 0.3, 1), opacity 2.5s ease-out';
+    document.body.appendChild(p);
+    const angle = (Math.PI * 2 * i) / 70 + Math.random() * 0.4;
+    const dist = 200 + Math.random() * 400;
+    const x = Math.cos(angle) * dist;
+    const y = Math.sin(angle) * dist;
+    requestAnimationFrame(() => {
+      p.style.transform = `translate(${x}px, ${y}px) rotate(${Math.random()*720}deg) scale(${0.5 + Math.random()})`;
+      p.style.opacity = '0';
+    });
+    setTimeout(() => p.remove(), 2600);
+  }
+  const colors = ['#ff6b9d','#ffd93d','#6bcbff','#a29bfe','#fd79a8','#00cec9'];
+  for (let i = 0; i < 100; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = cx + 'px';
+    p.style.top = cy + 'px';
+    p.style.background = colors[Math.floor(Math.random() * colors.length)];
+    const s = (6 + Math.random() * 10) + 'px';
+    p.style.width = s;
+    p.style.height = s;
+    p.style.borderRadius = Math.random() > 0.5 ? '50%' : '3px';
+    p.style.transition = 'transform 2.5s cubic-bezier(0.2, 0.8, 0.3, 1), opacity 2.5s ease-out';
+    document.body.appendChild(p);
+    const angle = Math.random() * Math.PI * 2;
+    const dist = 150 + Math.random() * 500;
+    const x = Math.cos(angle) * dist;
+    const y = Math.sin(angle) * dist;
+    requestAnimationFrame(() => {
+      p.style.transform = `translate(${x}px, ${y}px) rotate(${Math.random()*720}deg) scale(${0.3 + Math.random()})`;
+      p.style.opacity = '0';
+    });
+    setTimeout(() => p.remove(), 2600);
+  }
+  for (let i = 0; i < 15; i++) {
+    setTimeout(() => {
+      const n = document.createElement('div');
+      n.className = 'music-note';
+      n.textContent = ['🎵','🎶','🎼'][Math.floor(Math.random()*3)];
+      n.style.left = Math.random() * 100 + 'vw';
+      n.style.bottom = '0';
+      n.style.position = 'fixed';
+      n.style.fontSize = '2rem';
+      n.style.zIndex = '1002';
+      n.style.pointerEvents = 'none';
+      n.style.animation = 'floatNote 5s linear infinite';
+      document.body.appendChild(n);
+      setTimeout(() => n.remove(), 5000);
+    }, i * 200);
+  }
+  setTimeout(() => {
+    document.getElementById('page1').classList.add('show');
+  }, 1500);
+}
+
+function showPage3() {
+  document.getElementById('page1').classList.remove('show');
+  document.getElementById('page1').style.display = 'none';
+  document.getElementById('page3').classList.add('show');
+  window.scrollTo(0, 0);
+}
+function showPage4() {
+  document.getElementById('page3').classList.remove('show');
+  document.getElementById('page3').style.display = 'none';
+  document.getElementById('page4').classList.add('show');
+  window.scrollTo(0, 0);
+}
+function showPage5() {
+  document.getElementById('page4').classList.remove('show');
+  document.getElementById('page4').style.display = 'none';
+  document.getElementById('page5').classList.add('show');
+  window.scrollTo(0, 0);
+}
+function showPage6() {
+  document.getElementById('page5').classList.remove('show');
+  document.getElementById('page5').style.display = 'none';
+  document.getElementById('page6').classList.add('show');
+  window.scrollTo(0, 0);
+}
+</script>
+<style>
+@keyframes floatNote {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0.9; }
+  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+</style>
+</body>
+</html>
